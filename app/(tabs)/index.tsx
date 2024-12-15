@@ -1,74 +1,140 @@
-import { Image, StyleSheet, Platform } from 'react-native';
-
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
+// import { Image, StyleSheet, Platform } from 'react-native';
+import React from "react";
+import PopularCard from "../../components/PopularCard";
+import {
+  View,
+  Text,
+  TextInput,
+  Image,
+  StyleSheet,
+  ScrollView,
+} from "react-native";
 
 export default function HomeScreen() {
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
+    <ScrollView style={styles.container}>
+      {/* Search Bar and Profile Icon */}
+      <View style={styles.header}>
+        <TextInput
+          style={styles.searchBar}
+          placeholder="Search..."
+          placeholderTextColor="#888"
         />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12'
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-        <ThemedText>
-          Tap the Explore tab to learn more about what's included in this starter app.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          When you're ready, run{' '}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+        <View style={styles.profileIcon}></View>
+      </View>
+
+      {/* Popular Section */}
+      <Text style={styles.sectionTitle}>Popular</Text>
+      <ScrollView
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        style={styles.horizontalScroll}
+      >
+        <PopularCard itemImage=" " itemName="item 1" itemPrice={14.99} />
+        <PopularCard itemImage=" " itemName="item 1" itemPrice={14.99} />
+        <PopularCard itemImage=" " itemName="item 1" itemPrice={14.99} />
+      </ScrollView>
+
+      {/* For You Section */}
+      <Text style={styles.sectionTitle}>For You</Text>
+      <View style={styles.row}>
+        <View style={styles.item}>
+          <View style={styles.itemImage}></View>
+          <Text style={styles.itemText}>Item 1</Text>
+          <Text style={styles.itemPrice}>$14.99</Text>
+        </View>
+        <View style={styles.item}>
+          <View style={styles.itemImage}></View>
+          <Text style={styles.itemText}>Item 1</Text>
+          <Text style={styles.itemPrice}>$14.99</Text>
+        </View>
+      </View>
+      <View style={styles.row}>
+        <View style={styles.item}>
+          <View style={styles.itemImage}></View>
+          <Text style={styles.itemText}>Item 1</Text>
+          <Text style={styles.itemPrice}>$14.99</Text>
+        </View>
+        <View style={styles.item}>
+          <View style={styles.itemImage}></View>
+          <Text style={styles.itemText}>Item 1</Text>
+          <Text style={styles.itemPrice}>$14.99</Text>
+        </View>
+      </View>
+      <View style={styles.row}>
+        <View style={styles.item}>
+          <View style={styles.itemImage}></View>
+          <Text style={styles.itemText}>Item 1</Text>
+          <Text style={styles.itemPrice}>$14.99</Text>
+        </View>
+        <View style={styles.item}>
+          <View style={styles.itemImage}></View>
+          <Text style={styles.itemText}>Item 1</Text>
+          <Text style={styles.itemPrice}>$14.99</Text>
+        </View>
+      </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    padding: 16,
   },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
+  header: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 16,
   },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
+  searchBar: {
+    flex: 1,
+    height: 40,
+    borderRadius: 8,
+    backgroundColor: "#f0f0f0",
+    paddingHorizontal: 12,
+  },
+  profileIcon: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    backgroundColor: "#ddd",
+    marginLeft: 8,
+  },
+  sectionTitle: {
+    fontSize: 24,
+    fontWeight: "bold",
+    marginVertical: 8,
+  },
+  horizontalScroll: {
+    marginBottom: 16,
+  },
+  horizontalItem: {
+    width: 150,
+    marginRight: 16,
+  },
+  row: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  item: {
+    width: "48%",
+    marginBottom: 16,
+  },
+  itemImage: {
+    width: "100%",
+    height: 170,
+    backgroundColor: "#e0e0e0",
+    borderRadius: 8,
+  },
+  itemText: {
+    fontSize: 16,
+    fontWeight: "500",
+    marginTop: 4,
+  },
+  itemPrice: {
+    fontSize: 14,
+    color: "#888",
   },
 });
