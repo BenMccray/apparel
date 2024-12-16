@@ -6,11 +6,13 @@ import {
   View,
   Text,
   TextInput,
-  Image,
+  FlatList,
   StyleSheet,
   ScrollView,
 } from "react-native";
 
+const POPULARDATA = {};
+const FORYOUDATA = {};
 export default function HomeScreen() {
   let i = 0;
   return (
@@ -39,16 +41,54 @@ export default function HomeScreen() {
 
       {/* For You Section */}
       <Text style={styles.sectionTitle}>For You</Text>
-      <View style={styles.row}>
-        <NormalCard itemImage=" " itemName={"item " + i++} itemPrice={14.99} />
-        <NormalCard itemImage=" " itemName={"item " + i++} itemPrice={14.99} />
-        <NormalCard itemImage=" " itemName={"item " + i++} itemPrice={14.99} />
-        <NormalCard itemImage=" " itemName={"item " + i++} itemPrice={14.99} />
-        <NormalCard itemImage=" " itemName={"item " + i++} itemPrice={14.99} />
-        <NormalCard itemImage=" " itemName={"item " + i++} itemPrice={14.99} />
-        <NormalCard itemImage=" " itemName={"item " + i++} itemPrice={14.99} />
-        <NormalCard itemImage=" " itemName={"item " + i++} itemPrice={14.99} />
-        <NormalCard itemImage=" " itemName={"item " + i++} itemPrice={14.99} />
+      <View style={styles.rowContainer}>
+        <View style={styles.row}>
+          <NormalCard
+            itemImage=" "
+            itemName={"item " + i++}
+            itemPrice={14.99}
+          />
+          <NormalCard
+            itemImage=" "
+            itemName={"item " + i++}
+            itemPrice={14.99}
+          />
+          <NormalCard
+            itemImage=" "
+            itemName={"item " + i++}
+            itemPrice={14.99}
+          />
+          <NormalCard
+            itemImage=" "
+            itemName={"item " + i++}
+            itemPrice={14.99}
+          />
+          <NormalCard
+            itemImage=" "
+            itemName={"item " + i++}
+            itemPrice={14.99}
+          />
+          <NormalCard
+            itemImage=" "
+            itemName={"item " + i++}
+            itemPrice={14.99}
+          />
+          <NormalCard
+            itemImage=" "
+            itemName={"item " + i++}
+            itemPrice={14.99}
+          />
+          <NormalCard
+            itemImage=" "
+            itemName={"item " + i++}
+            itemPrice={14.99}
+          />
+          <NormalCard
+            itemImage=" "
+            itemName={"item " + i++}
+            itemPrice={14.99}
+          />
+        </View>
       </View>
     </ScrollView>
   );
@@ -80,7 +120,7 @@ const styles = StyleSheet.create({
     marginLeft: 8,
   },
   sectionTitle: {
-    fontSize: 24,
+    fontSize: 28,
     fontWeight: "bold",
     marginVertical: 8,
   },
@@ -90,6 +130,9 @@ const styles = StyleSheet.create({
   horizontalItem: {
     width: 150,
     marginRight: 16,
+  },
+  rowContainer: {
+    justifyContent: "center",
   },
   row: {
     flexDirection: "row",
