@@ -13,6 +13,7 @@ import "react-native-reanimated";
 import { useColorScheme } from "@/hooks/useColorScheme";
 import { FirebaseAuthTypes } from "@react-native-firebase/auth";
 import { app, auth } from "@/firebaseConfig";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -54,14 +55,15 @@ export default function RootLayout() {
 
     const inAuthGroup = segments[0] === "(auth)";
 
-    if (user && !inAuthGroup) {
+    if (user) {
       router.replace("/home");
-    } else if (!user && inAuthGroup) {
+    } else {
       router.replace("./index");
     }
   }, [user, initializing]);
 
   return (
+    // <GestureHandlerRootView>
     <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
       <Stack>
         <Stack.Screen name="index" options={{ headerShown: false }} />
@@ -72,5 +74,6 @@ export default function RootLayout() {
       </Stack>
       <StatusBar style="auto" />
     </ThemeProvider>
+    // </GestureHandlerRootView>
   );
 }

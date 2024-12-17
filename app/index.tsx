@@ -11,7 +11,7 @@ import {
   Image,
 } from "react-native";
 import { auth } from "@/firebaseConfig";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword } from "@react-native-firebase/auth";
 import { FirebaseError } from "firebase/app";
 import { router } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -97,7 +97,7 @@ export default function LoginScreen() {
       {/* Here is alternate signin options and a sign up option */}
       <Text style={styles.separatorText}>Or sign in with</Text>
       <View style={styles.altSignIn}>
-        {Platform.OS === "web" ? <AppleSignInButton /> : null}
+        {Platform.OS === "ios" ? <AppleSignInButton /> : null}
         <GoogleSignInButton />
       </View>
       <View style={styles.noAccount}>

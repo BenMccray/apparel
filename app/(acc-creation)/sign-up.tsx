@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 
 import { app, auth } from "@/firebaseConfig";
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { FirebaseError } from "firebase/app";
+import { createUserWithEmailAndPassword } from "@react-native-firebase/auth";
+import FirebaseError from "@react-native-firebase/app";
 import {
   SafeAreaView,
   View,
@@ -44,7 +44,7 @@ export default function SignInScreen() {
         );
         router.replace("./additional-info");
       } catch (e: any) {
-        const err = e as FirebaseError;
+        const err = e as Error;
         setError(err.message);
       } finally {
         setLoading(false);

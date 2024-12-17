@@ -23,85 +23,83 @@ export default function HomeScreen() {
   };
   let i = 0;
   return (
-    <SafeAreaView>
-      <ScrollView style={styles.container}>
-        {/* Search Bar and Profile Icon */}
-        <View style={styles.header}>
-          <TextInput
-            style={styles.searchBar}
-            placeholder="Search..."
-            placeholderTextColor="#888"
-          />
-          <TouchableOpacity style={styles.iconContainer} onPress={routeToCart}>
-            <Ionicons style={styles.cartIcon} size={32} name="bag-outline" />
-          </TouchableOpacity>
-        </View>
+    <ScrollView style={styles.container}>
+      {/* Search Bar and Profile Icon */}
+      <View style={styles.header}>
+        <TextInput
+          style={styles.searchBar}
+          placeholder="Search..."
+          placeholderTextColor="#888"
+        />
+        <TouchableOpacity style={styles.iconContainer} onPress={routeToCart}>
+          <Ionicons style={styles.cartIcon} size={32} name="bag-outline" />
+        </TouchableOpacity>
+      </View>
 
-        {/* Popular Section */}
-        <Text style={styles.sectionTitle}>Popular</Text>
-        <ScrollView
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          style={styles.horizontalScroll}
-        >
-          <PopularCard itemImage=" " itemName="item 1" itemPrice={14.99} />
-          <PopularCard itemImage=" " itemName="item 1" itemPrice={14.99} />
-          <PopularCard itemImage=" " itemName="item 1" itemPrice={14.99} />
-        </ScrollView>
-
-        {/* For You Section */}
-        <Text style={styles.sectionTitle}>For You</Text>
-        <View style={styles.rowContainer}>
-          <View style={styles.row}>
-            <NormalCard
-              itemImage=" "
-              itemName={"item " + i++}
-              itemPrice={14.99}
-            />
-            <NormalCard
-              itemImage=" "
-              itemName={"item " + i++}
-              itemPrice={14.99}
-            />
-            <NormalCard
-              itemImage=" "
-              itemName={"item " + i++}
-              itemPrice={14.99}
-            />
-            <NormalCard
-              itemImage=" "
-              itemName={"item " + i++}
-              itemPrice={14.99}
-            />
-            <NormalCard
-              itemImage=" "
-              itemName={"item " + i++}
-              itemPrice={14.99}
-            />
-            <NormalCard
-              itemImage=" "
-              itemName={"item " + i++}
-              itemPrice={14.99}
-            />
-            <NormalCard
-              itemImage=" "
-              itemName={"item " + i++}
-              itemPrice={14.99}
-            />
-            <NormalCard
-              itemImage=" "
-              itemName={"item " + i++}
-              itemPrice={14.99}
-            />
-            <NormalCard
-              itemImage=" "
-              itemName={"item " + i++}
-              itemPrice={14.99}
-            />
-          </View>
-        </View>
+      {/* Popular Section */}
+      <Text style={styles.sectionTitle}>Popular</Text>
+      <ScrollView
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        style={styles.horizontalScroll}
+      >
+        <PopularCard itemImage=" " itemName="item 1" itemPrice={14.99} />
+        <PopularCard itemImage=" " itemName="item 1" itemPrice={14.99} />
+        <PopularCard itemImage=" " itemName="item 1" itemPrice={14.99} />
       </ScrollView>
-    </SafeAreaView>
+
+      {/* For You Section */}
+      <Text style={styles.sectionTitle}>For You</Text>
+      <View style={styles.rowContainer}>
+        <View style={styles.row}>
+          <NormalCard
+            itemImage=" "
+            itemName={"item " + i++}
+            itemPrice={14.99}
+          />
+          <NormalCard
+            itemImage=" "
+            itemName={"item " + i++}
+            itemPrice={14.99}
+          />
+          <NormalCard
+            itemImage=" "
+            itemName={"item " + i++}
+            itemPrice={14.99}
+          />
+          <NormalCard
+            itemImage=" "
+            itemName={"item " + i++}
+            itemPrice={14.99}
+          />
+          <NormalCard
+            itemImage=" "
+            itemName={"item " + i++}
+            itemPrice={14.99}
+          />
+          <NormalCard
+            itemImage=" "
+            itemName={"item " + i++}
+            itemPrice={14.99}
+          />
+          <NormalCard
+            itemImage=" "
+            itemName={"item " + i++}
+            itemPrice={14.99}
+          />
+          <NormalCard
+            itemImage=" "
+            itemName={"item " + i++}
+            itemPrice={14.99}
+          />
+          <NormalCard
+            itemImage=" "
+            itemName={"item " + i++}
+            itemPrice={14.99}
+          />
+        </View>
+      </View>
+    </ScrollView>
   );
 }
 

@@ -7,10 +7,7 @@ export default function AuthLayout() {
   return (
     <Fragment>
       <Stack screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="shopping-cart" options={{ headerShown: false }} />
-        <Stack.Screen name="login" />
-        <Stack.Screen name="sign-up" />
       </Stack>
       <StatusBar style="auto" />
     </Fragment>
