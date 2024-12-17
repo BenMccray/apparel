@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "apparel",
-    "slug": "apparel",
+    "name": "Vesta",
+    "slug": "Vesta",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -10,7 +10,7 @@
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.mccray.apparel",
+      "bundleIdentifier": "com.mccray.Vesta",
       "googleServicesFile": "./GoogleService-Info.plist"
     },
     "android": {
@@ -18,7 +18,7 @@
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.mccray.apparel",
+      "package": "com.mccray.Vesta",
       "googleServicesFile": "./google-services.json"
     },
     "web": {
@@ -45,9 +45,8 @@
         }
       ],
       "@react-native-firebase/app",
-      "@react-native-firebase/auth",
-      "firebase/app",
-      "firebase/auth"
+      "@react-native-firebase/auth"
+
 
     ],
     "experiments": {

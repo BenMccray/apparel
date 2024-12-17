@@ -4,7 +4,7 @@ import {
   ThemeProvider,
 } from "@react-navigation/native";
 import { useFonts } from "expo-font";
-import { Stack, useSegments, useRouter } from "expo-router";
+import { Stack, useSegments, router } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { StatusBar } from "expo-status-bar";
 import { useEffect, useState } from "react";
@@ -20,7 +20,6 @@ SplashScreen.preventAutoHideAsync();
 export default function RootLayout() {
   const [initializing, setInitializing] = useState(true);
   const [user, setUser] = useState<FirebaseAuthTypes.User | null>();
-  const router = useRouter();
   const segments = useSegments();
 
   const colorScheme = useColorScheme();
@@ -56,23 +55,22 @@ export default function RootLayout() {
     const inAuthGroup = segments[0] === "(auth)";
 
     if (user && !inAuthGroup) {
-      router.replace("./(tabs)/index");
+      router.replace("/home");
     } else if (!user && inAuthGroup) {
-      router.replace("/login");
+      router.replace("./index");
     }
   }, [user, initializing]);
 
   return (
     <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
       <Stack>
-        <Stack.Screen name="login" options={{ headerShown: false }} />
+        <Stack.Screen name="index" options={{ headerShown: false }} />
+        <Stack.Screen name="(acc-creation)" options={{ headerShown: false }} />
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        <Stack.Screen name="(auth)" options={{ headerShown: false }} />
         <Stack.Screen name="+not-found" />
       </Stack>
       <StatusBar style="auto" />
     </ThemeProvider>
   );
-}
-function userRouter() {
-  throw new Error("Function not implemented.");
 }

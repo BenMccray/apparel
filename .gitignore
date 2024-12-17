@@ -29,6 +29,12 @@ yarn-error.*
 .DS_Store
 *.pem
 
+# config files
+firebaseConfig.js
+.plist
+.json
+metro.config.js
+
 # local env files
 .env*.local
 

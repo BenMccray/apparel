@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:694356706221:android:f7207ba027bf7d16191724",
         "android_client_info": {
-          "package_name": "com.mccray.apparel"
+          "package_name": "com.mccray.Vesta"
         }
       },
       "oauth_client": [
@@ -17,7 +17,7 @@
           "client_id": "694356706221-354ues611qepskfdcn0fqos8668quevn.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.mccray.apparel",
+            "package_name": "com.mccray.Vesta",
             "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
           }
         },
@@ -42,7 +42,7 @@
               "client_id": "694356706221-3tqvt3522643goke86k3u7bqq0q1s671.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.mccray.apparel"
+                "bundle_id": "com.mccray.Vesta"
               }
             }
           ]

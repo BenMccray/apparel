@@ -10,7 +10,7 @@ export default function PopularCard({ itemImage, itemName, itemPrice }: Props) {
   return (
     <View style={styles.horizontalItem}>
       <View style={styles.itemImage}>
-        <Image src={itemImage}></Image>{" "}
+        <Image src={itemImage}></Image>
       </View>
       <Text style={styles.itemText}>{itemName}</Text>
       <Text style={styles.itemPrice}>${itemPrice}</Text>
