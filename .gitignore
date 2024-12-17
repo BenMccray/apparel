@@ -31,8 +31,8 @@ yarn-error.*
 
 # config files
 firebaseConfig.js
-.plist
-.json
+*.plist
+*.json
 metro.config.js
 
 # local env files
