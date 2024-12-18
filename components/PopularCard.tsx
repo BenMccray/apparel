@@ -5,6 +5,7 @@ type Props = {
   itemImage: string;
   itemName: string;
   itemPrice: number;
+  key: number;
 };
 export default function PopularCard({ itemImage, itemName, itemPrice }: Props) {
   return (

@@ -11,8 +11,8 @@ import { useEffect, useState } from "react";
 import "react-native-reanimated";
 
 import { useColorScheme } from "@/hooks/useColorScheme";
-import { FirebaseAuthTypes } from "@react-native-firebase/auth";
-import { app, auth } from "@/firebaseConfig";
+import FirebaseAuthTypes from "firebase/auth";
+import { app, auth } from "@/firebaseConfig.web";
 import React from "react";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.

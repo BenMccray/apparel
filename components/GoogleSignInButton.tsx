@@ -1,9 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, Text, TouchableOpacity, Image, StyleSheet } from "react-native";
+import { useGoogleSignIn } from "../hooks/useGoogleSignIn";
 
 export default function GoogleSignInButton() {
+  const [loading, setLoading] = useState(false);
+  const { promptAsync, handleResponse } = useGoogleSignIn();
+
+  const googleSignIn = async () => {
+    setLoading(true);
+    console.log("google");
+    try {
+      await promptAsync();
+      const signedInUser = await handleResponse();
+    } catch (e: any) {
+      alert("Sign in with Google failed");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
-    <TouchableOpacity style={styles.googleButton}>
+    <TouchableOpacity style={styles.googleButton} onPress={googleSignIn}>
       <Image
         source={{ uri: "https://img.icons8.com/color/48/google-logo.png" }}
         style={styles.icon}

@@ -9,8 +9,8 @@ import {
   KeyboardAvoidingView,
   TouchableOpacity,
 } from "react-native";
-import { auth } from "@/firebaseConfig";
-import { signInWithEmailAndPassword } from "@react-native-firebase/auth";
+import { auth, GoogleProvider } from "@/firebaseConfig.web";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import { useRouter } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
 import AppleSignInButton from "@/components/AppleSignInButton";
@@ -26,20 +26,22 @@ export default function LoginScreen() {
   const [loading, setLoading] = useState(false);
   const [passwordVisible, setPasswordVisible] = useState(false);
   const router = useRouter();
+
   const togglePasswordVisibility = () => {
     setPasswordVisible(!passwordVisible);
   };
 
   const signIn = async () => {
-    // setLoading(true);
-    // try {
-    //   const user = await signInWithEmailAndPassword(auth, email, password);
-    /**if (user)*/ router.replace("/(tabs)/home");
-    // } catch (e: any) {
-    //   alert("Sign in failed");
-    // } finally {
-    //   setLoading(false);
-    // }
+    setLoading(true);
+    try {
+      const user = await signInWithEmailAndPassword(auth, email, password);
+
+      if (user) router.replace("/(tabs)/home");
+    } catch (e: any) {
+      alert("Sign in failed");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (

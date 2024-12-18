@@ -5,6 +5,7 @@ type Props = {
   itemImage: string;
   itemName: string;
   itemPrice: number;
+  key: number;
 };
 export default function NormalCard({ itemImage, itemName, itemPrice }: Props) {
   return (
