@@ -1,12 +1,26 @@
-import { View, TextInput, TouchableOpacity, StyleSheet } from "react-native";
-import React from "react";
+import {
+  View,
+  TextInput,
+  TouchableOpacity,
+  StyleSheet,
+  Animated,
+} from "react-native";
+import React, { useRef } from "react";
 import { Ionicons } from "@expo/vector-icons";
-import { useRouter } from "expo-router";
+import { Link, useRouter } from "expo-router";
+import CartPopUp from "../app/(auth)/shopping-cart";
 
 export default function HomeTopBar() {
   const router = useRouter();
   const routeToCart = () => {
     router.push("../(auth)/shopping-cart");
+  };
+  const translateY = useRef(new Animated.Value(-100)).current;
+  const dropCartDown = () => {
+    Animated.spring(translateY, {
+      toValue: 0,
+      useNativeDriver: true,
+    }).start();
   };
   return (
     <View style={styles.header}>
@@ -15,9 +29,9 @@ export default function HomeTopBar() {
         placeholder="Search..."
         placeholderTextColor="#888"
       />
-      <TouchableOpacity style={styles.iconContainer} onPress={routeToCart}>
+      <Link style={styles.iconContainer} href="/(auth)/shopping-cart">
         <Ionicons style={styles.cartIcon} size={32} name="bag-outline" />
-      </TouchableOpacity>
+      </Link>
     </View>
   );
 }

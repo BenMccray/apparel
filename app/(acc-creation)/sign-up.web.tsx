@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 
-import { app, auth } from "@/firebaseConfig.web";
+import { app, auth, db } from "@/firebaseConfig.web";
 import { createUserWithEmailAndPassword } from "firebase/auth";
+import { doc, setDoc } from "firebase/firestore";
 import {
   SafeAreaView,
   View,
@@ -14,6 +15,7 @@ import {
 import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import Checkbox from "expo-checkbox";
+import TermsCheckbox from "@/components/TermsCheckbox";
 
 export default function SignUpScreen() {
   const [name, setName] = useState("");
@@ -23,7 +25,6 @@ export default function SignUpScreen() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [passwordVisible, setPasswordVisible] = useState(false);
-  const [isChecked, setChecked] = useState(false);
   const router = useRouter();
 
   const signUp = async () => {
@@ -45,10 +46,21 @@ export default function SignUpScreen() {
       setError("Confirmation doesn't match password");
     } else {
       try {
-        const user = await createUserWithEmailAndPassword(
-          auth,
-          email,
-          password
+        createUserWithEmailAndPassword(auth, email, password).then(
+          (userCredential) => {
+            const user = userCredential.user;
+            console.log(user.uid);
+            return setDoc(doc(db, "users", user.uid), {
+              user_id: user.uid,
+              user_name: name,
+              user_email: email,
+              user_phone: -1,
+              user_height_ft: -1,
+              user_height_in: -1,
+              user_gender: -1,
+              user_image_url: "",
+            });
+          }
         );
         router.replace("./add-info");
       } catch (e: any) {
@@ -130,17 +142,7 @@ export default function SignUpScreen() {
           ) : (
             <Text style={styles.errorMessage}> </Text>
           )}
-          <View style={styles.userAgreement}>
-            <Checkbox
-              style={styles.checkbox}
-              value={isChecked}
-              onValueChange={setChecked}
-              color={isChecked ? "#007BFF" : undefined}
-            />
-            <Text>
-              I have read and agree to the Terms of Service and Privacy Policy.
-            </Text>
-          </View>
+          <TermsCheckbox />
           {/* Sign Up Button */}
           <TouchableOpacity style={styles.signUpBtn} onPress={signUp}>
             <Text style={styles.signUpBtnText}>Sign Up</Text>
@@ -201,16 +203,7 @@ const styles = StyleSheet.create({
     color: "red",
     // marginBottom: 4,
   },
-  userAgreement: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    marginBottom: 4,
-  },
-  checkbox: {
-    marginHorizontal: 8,
-  },
+
   signUpBtn: {
     backgroundColor: "#007BFF", // Button background color
     flex: 1,

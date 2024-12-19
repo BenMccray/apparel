@@ -51,11 +51,11 @@ export default function RootLayout() {
 
     const inAuthGroup = segments[0] === "(auth)";
 
-    if (user) {
-      router.replace("/(tabs)/home");
-    } else {
-      router.replace("./index");
-    }
+    // if (user) {
+    //   router.replace("/(tabs)/home");
+    // } else {
+    //   router.replace("./index");
+    // }
   }, [user, initializing]);
 
   if (!loaded) {

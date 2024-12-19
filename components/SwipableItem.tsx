@@ -43,12 +43,14 @@ export default function SwipableItem() {
         </View>
       </View>
 
-      <View>
+      <View style={styles.itemButtons}>
         <TouchableOpacity style={styles.tryOnBtn}>
-          <Text>VIRTUAL TRY ON</Text>
+          <Ionicons name="shirt-outline" size={32} color="black" />{" "}
+          {/* Shirt icon */}
         </TouchableOpacity>
         <TouchableOpacity style={styles.purchaseBtn}>
-          <Text>PURCHASE</Text>
+          <Ionicons name="cart-outline" size={32} color="black" />{" "}
+          {/* Purchase icon */}
         </TouchableOpacity>
       </View>
     </View>
@@ -68,10 +70,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   cartItem: {
+    height: "auto",
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
-    paddingHorizontal: 30,
+    paddingHorizontal: 15,
     paddingVertical: 20,
   },
   itemInfo: {
@@ -88,12 +91,19 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "column",
     padding: 5,
+    width: "auto",
   },
   itemName: {
     fontSize: 16,
   },
   itemPrice: {
     fontSize: 12,
+  },
+  itemButtons: {
+    width: "25%",
+    alignItems: "center",
+    flexDirection: "row",
+    justifyContent: "space-evenly",
   },
   tryOnBtn: {},
   purchaseBtn: {},

@@ -1,7 +1,6 @@
 import {
   View,
   Text,
-  SafeAreaView,
   TouchableOpacity,
   ScrollView,
   Image,
@@ -10,18 +9,31 @@ import {
 import React from "react";
 import { Ionicons } from "@expo/vector-icons";
 import SwipableItem from "@/components/SwipableItem";
+import { useRouter } from "expo-router";
 
 export default function ShoppingCartScreen() {
+  const router = useRouter();
+
+  const closeCart = () => {
+    router.back();
+  };
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <View style={styles.cartHeader}>
         {/* close cart button */}
-        <TouchableOpacity style={styles.closeIcon}>
-          <Ionicons></Ionicons>
+        <TouchableOpacity style={styles.closeIcon} onPress={closeCart}>
+          <Ionicons name="close" size={32} color="black" />
         </TouchableOpacity>
-        <Text>Cart</Text>
+        <Text style={styles.title}>Cart</Text>
       </View>
       <ScrollView style={styles.cartScroll}>
+        <SwipableItem />
+        <SwipableItem />
+        <SwipableItem />
+        <SwipableItem />
+        <SwipableItem />
+        <SwipableItem />
+        <SwipableItem />
         <SwipableItem />
       </ScrollView>
 
@@ -31,7 +43,7 @@ export default function ShoppingCartScreen() {
           <Text>PURCHASE CART</Text>
         </TouchableOpacity>
       </View>
-    </SafeAreaView>
+    </View>
   );
 }
 
@@ -44,10 +56,19 @@ const styles = StyleSheet.create({
   cartHeader: {
     display: "flex",
     flexDirection: "row",
-    justifyContent: "center",
-    paddingVertical: 32,
+    justifyContent: "flex-start",
+    alignItems: "center",
+    paddingVertical: 16,
+    borderBottomColor: "#ccc",
+    borderBottomWidth: 1,
   },
-  closeIcon: {},
+  closeIcon: {
+    position: "absolute",
+  },
+  title: {
+    marginHorizontal: "auto",
+    fontSize: 24,
+  },
   cartScroll: {},
   purchaseBtn: {},
 

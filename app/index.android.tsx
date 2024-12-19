@@ -5,15 +5,13 @@ import {
   StyleSheet,
   Text,
   TextInput,
-  Platform,
   KeyboardAvoidingView,
   TouchableOpacity,
 } from "react-native";
-import { auth, GoogleProvider } from "@/firebaseConfig.web";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "@/firebaseConfig";
+import { signInWithEmailAndPassword } from "@react-native-firebase/auth";
 import { useRouter } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
-import AppleSignInButton from "@/components/AppleSignInButton";
 import GoogleSignInButton from "@/components/GoogleSignInButton";
 /** Login screen as the first screen seen when downloading and opening the app
  * Users can sign in with app credentials, google, or apple if on ios
@@ -26,22 +24,20 @@ export default function LoginScreen() {
   const [loading, setLoading] = useState(false);
   const [passwordVisible, setPasswordVisible] = useState(false);
   const router = useRouter();
-
   const togglePasswordVisibility = () => {
     setPasswordVisible(!passwordVisible);
   };
 
   const signIn = async () => {
-    setLoading(true);
-    try {
-      const user = await signInWithEmailAndPassword(auth, email, password);
-
-      if (user) router.replace("/(tabs)/home");
-    } catch (e: any) {
-      alert("Sign in failed");
-    } finally {
-      setLoading(false);
-    }
+    // setLoading(true);
+    // try {
+    //   const user = await signInWithEmailAndPassword(auth, email, password);
+    /**if (user)*/ router.replace("/(tabs)/home");
+    // } catch (e: any) {
+    //   alert("Sign in failed");
+    // } finally {
+    //   setLoading(false);
+    // }
   };
 
   return (
@@ -96,7 +92,6 @@ export default function LoginScreen() {
       {/* Here is alternate signin options and a sign up option */}
       <Text style={styles.separatorText}>Or sign in with</Text>
       <View style={styles.altSignIn}>
-        {Platform.OS === "ios" ? <AppleSignInButton /> : null}
         <GoogleSignInButton />
       </View>
       <View style={styles.noAccount}>
