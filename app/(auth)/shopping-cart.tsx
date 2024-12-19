@@ -22,7 +22,7 @@ export default function ShoppingCartScreen() {
       <View style={styles.cartHeader}>
         {/* close cart button */}
         <TouchableOpacity style={styles.closeIcon} onPress={closeCart}>
-          <Ionicons name="close" size={32} color="black" />
+          <Ionicons name="close" size={32} color="gray" />
         </TouchableOpacity>
         <Text style={styles.title}>Cart</Text>
       </View>
@@ -51,18 +51,19 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    padding: 16,
+    // padding: 16,
   },
   cartHeader: {
     display: "flex",
     flexDirection: "row",
     justifyContent: "flex-start",
     alignItems: "center",
-    paddingVertical: 16,
+    paddingVertical: 12,
     borderBottomColor: "#ccc",
     borderBottomWidth: 1,
   },
   closeIcon: {
+    left: "4%",
     position: "absolute",
   },
   title: {

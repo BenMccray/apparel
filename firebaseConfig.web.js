@@ -1,9 +1,7 @@
 // firebaseConfig.js
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore"; // If you're using Firestore
-import { getAuth, GoogleAuthProvider } from "firebase/auth"; // If you're using Firebase Authentication
-// import ReactNativeAsyncStorage from 'firebase/async-storage/async-storage';
-import { getReactNativePersistence } from "firebase/auth"
+import { getAuth, GoogleAuthProvider} from "firebase/auth"; // If you're using Firebase Authentication
 
 // Your web app's Firebase configuration
 const firebaseConfig = {

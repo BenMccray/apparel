@@ -10,6 +10,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { auth, db } from "@/firebaseConfig.web";
+import { doc, getDoc } from "firebase/firestore";
 
 type Props = {};
 const DATA = [{}];
@@ -26,7 +27,11 @@ export default function AccountScreen({}: Props) {
       <View style={styles.profileView}>
         <View style={styles.imgPlaceholder} />
         <View>
-          <Text>Profile Name</Text>
+          <Text>
+            {auth.currentUser?.displayName
+              ? auth.currentUser?.email
+              : "User-" + auth.currentUser?.uid.slice(0, 12) + "..."}
+          </Text>
           <View style={{ flexDirection: "row" }}>
             <Text>Followers</Text>
             <Text>Following</Text>
@@ -43,31 +48,34 @@ export default function AccountScreen({}: Props) {
       {/* Item list selectors */}
       <View style={styles.listSelectorView}>
         <TouchableOpacity
+          id="listed_items"
           style={[
             styles.selector,
             activeSelector === 0 ? styles.activeSelector : null,
           ]}
           onPress={() => setActiveSelector(0)}
         >
-          <Text>Storefront</Text>
+          <Text style={{ textAlign: "center" }}>Storefront</Text>
         </TouchableOpacity>
         <TouchableOpacity
+          id="saved_items"
           style={[
             styles.selector,
             activeSelector === 1 ? styles.activeSelector : null,
           ]}
           onPress={() => setActiveSelector(1)}
         >
-          <Text>Saved</Text>
+          <Text style={{ textAlign: "center" }}>Saved</Text>
         </TouchableOpacity>
         <TouchableOpacity
+          id="purchase_items"
           style={[
             styles.selector,
             activeSelector === 2 ? styles.activeSelector : null,
           ]}
           onPress={() => setActiveSelector(2)}
         >
-          <Text>Purchases</Text>
+          <Text style={{ textAlign: "center" }}>Purchases</Text>
         </TouchableOpacity>
       </View>
       {/* List scroll view */}
@@ -92,11 +100,15 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginVertical: "12%",
   },
-  listSelectorView: { flexDirection: "row", justifyContent: "center" },
+  listSelectorView: {
+    flexDirection: "row",
+    justifyContent: "center",
+  },
   selector: {
-    paddingHorizontal: "8%",
+    paddingHorizontal: "4%",
     borderBottomWidth: 2,
     borderBottomColor: "#ccc",
+    width: "31%",
   },
   imgPlaceholder: {
     width: 96,
