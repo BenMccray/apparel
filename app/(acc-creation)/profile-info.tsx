@@ -6,7 +6,6 @@ import {
   TouchableOpacity,
   StyleSheet,
   View,
-  Switch,
 } from "react-native";
 import { Camera } from "expo-camera";
 import { Link, useRouter } from "expo-router";
@@ -17,6 +16,7 @@ export default function InfoScreen() {
   const router = useRouter();
   const [height, setHeight] = useState({ ft: 5, in: 8 });
   const [weight, setWeight] = useState(140);
+  const [name, setName] = useState("");
 
   const saveInfo = () => {
     router.replace("/(tabs)/home");
@@ -31,9 +31,17 @@ export default function InfoScreen() {
         more generic and less reflective of how the clothes would truly fit and
         look on you.
       </Text>
+      <Text style={styles.inputLabel}>User Name</Text>
+      <TextInput
+        style={styles.input}
+        value={name}
+        onChangeText={setName}
+        keyboardType="default"
+        placeholder="John Smith or johnSmith123"
+        placeholderTextColor="gray"
+      />
       <Text style={styles.inputLabel}>Gender</Text>
       <RNPickerSelect
-        placeholder="Select a gender"
         pickerProps={{ style: styles.input }}
         style={pickerStyles}
         onValueChange={(value) => console.log(value)}
@@ -106,8 +114,8 @@ const styles = StyleSheet.create({
     color: "gray",
   },
   input: {
-    borderWidth: 1,
-    borderColor: "#ccc",
+    borderBottomWidth: 1,
+    borderBottomColor: "#ccc",
     padding: 10,
     marginBottom: 20,
     width: "100%",

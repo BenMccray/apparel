@@ -12,6 +12,7 @@ export default function GoogleSignInButton() {
     try {
       await promptAsync();
       const signedInUser = await handleResponse();
+      console.log(signedInUser?.email);
     } catch (e: any) {
       alert("Sign in with Google failed");
     } finally {

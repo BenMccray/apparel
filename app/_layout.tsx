@@ -54,7 +54,7 @@ export default function RootLayout() {
     if (user) {
       router.replace("/(tabs)/home");
     } else {
-      router.replace("./index");
+      router.replace("/sign-in");
     }
   }, [user, initializing]);
 
@@ -66,7 +66,7 @@ export default function RootLayout() {
     // <GestureHandlerRootView>
     <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
       <Stack>
-        <Stack.Screen name="index" options={{ headerShown: false }} />
+        <Stack.Screen name="sign-in" options={{ headerShown: false }} />
         <Stack.Screen name="(acc-creation)" options={{ headerShown: false }} />
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="(auth)" options={{ headerShown: false }} />

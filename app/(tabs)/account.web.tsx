@@ -11,16 +11,24 @@ import {
 } from "react-native";
 import { auth, db } from "@/firebaseConfig.web";
 import { doc, getDoc } from "firebase/firestore";
+import { signOut } from "firebase/auth";
+import { useRouter } from "expo-router";
 
 type Props = {};
 const DATA = [{}];
 export default function AccountScreen({}: Props) {
+  const router = useRouter();
   const [activeSelector, setActiveSelector] = useState(0);
 
   useEffect(() => {
     console.log(activeSelector);
   }, [activeSelector]);
 
+  const handleSignOut = async () => {
+    signOut(auth);
+    console.log(auth.currentUser);
+    router.replace("../sign-in.web");
+  };
   return (
     <View style={styles.container}>
       {/* Profile Info */}
@@ -84,6 +92,9 @@ export default function AccountScreen({}: Props) {
           return <View></View>;
         })}
       </ScrollView>
+      <TouchableOpacity onPress={handleSignOut}>
+        <Text>Sign Out</Text>
+      </TouchableOpacity>
     </View>
   );
 }

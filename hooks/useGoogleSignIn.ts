@@ -12,7 +12,6 @@ export const useGoogleSignIn = () => {
     webClientId: "694356706221-0p7hin24bnlcujj16l76kug47fjcm4nu.apps.googleusercontent.com",
     redirectUri: "http://localhost:8081"
   });
-
   const handleResponse = async () => {
     await promptAsync();
     if (response?.type === "success" && response.authentication) {

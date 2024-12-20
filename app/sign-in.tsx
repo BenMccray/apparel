@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import { auth } from "@/firebaseConfig.web";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { Slot, SplashScreen, useRouter } from "expo-router";
+import { Link, Slot, SplashScreen, useRouter } from "expo-router";
 import GoogleSignInButton from "@/components/GoogleSignInButton";
 /** Login screen as the first screen seen when downloading and opening the app
  * Users can sign in with app credentials, google, or apple if on ios
@@ -61,7 +61,7 @@ export default function LoginScreen() {
           <Text style={styles.inputLabel}>Password</Text>
           <View>
             <TextInput
-              style={styles.textInput}
+              style={[styles.textInput]}
               value={password}
               onChangeText={setPassword}
               placeholder="***************"
@@ -97,9 +97,9 @@ export default function LoginScreen() {
       </View>
       <View style={styles.noAccount}>
         <Text>Don't have an account? </Text>
-        <TouchableOpacity onPress={() => router.replace("./sign-up")}>
-          <Text style={styles.signUpBtn}>Sign up</Text>
-        </TouchableOpacity>
+        <Link style={styles.signUpBtn} href="/(acc-creation)/sign-up">
+          Sign Up
+        </Link>
       </View>
     </View>
   );
@@ -128,10 +128,13 @@ const styles = StyleSheet.create({
   },
   textInput: {
     padding: 10,
-    borderColor: "gray",
-    borderWidth: 1,
-    borderRadius: 20,
+    borderBottomColor: "gray",
+    borderBottomWidth: 1,
     marginBottom: 12,
+  },
+  inputFocus: {
+    borderWidth: 0,
+    borderBottomColor: "black",
   },
   passwordVisiBtn: {
     position: "absolute",

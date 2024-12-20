@@ -14,22 +14,24 @@ import {
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
-import Checkbox from "expo-checkbox";
 import TermsCheckbox from "@/components/TermsCheckbox";
 
 export default function SignUpScreen() {
-  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPass, setConfirmPass] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [passwordVisible, setPasswordVisible] = useState(false);
+  const [isChecked, setIsChecked] = useState(false);
   const router = useRouter();
 
   const signUp = async () => {
     setLoading(true);
-    if (email === "" || password === "" || name === "" || confirmPass === "") {
+    if (email === "" || password === "" || confirmPass === "" || !isChecked) {
+      if (!isChecked) {
+        setError("Please check the box to agree to our terms and policies");
+      }
       if (confirmPass === "") {
         setError("Confirm your password to continue");
       }
@@ -38,9 +40,6 @@ export default function SignUpScreen() {
       }
       if (email === "") {
         setError("Provide an email to continue");
-      }
-      if (name === "") {
-        setError("Provide an name to continue");
       }
     } else if (confirmPass !== password) {
       setError("Confirmation doesn't match password");
@@ -52,17 +51,12 @@ export default function SignUpScreen() {
             console.log(user.uid);
             return setDoc(doc(db, "users", user.uid), {
               user_id: user.uid,
-              user_name: name,
               user_email: email,
-              user_phone: -1,
-              user_height_ft: -1,
-              user_height_in: -1,
-              user_gender: -1,
               user_image_url: "",
             });
           }
         );
-        router.replace("./add-info");
+        router.push("/address-info");
       } catch (e: any) {
         const err = e as Error;
         setError(err.message);
@@ -83,17 +77,6 @@ export default function SignUpScreen() {
       {/* Main login form for the apps own login */}
       <View style={styles.signUpForm}>
         <KeyboardAvoidingView behavior="padding">
-          <View>
-            <Text style={styles.inputLabel}>User Name</Text>
-            <TextInput
-              style={styles.textInput}
-              value={name}
-              onChangeText={setName}
-              keyboardType="default"
-              placeholder="John Smith or johnSmith123"
-              placeholderTextColor="gray"
-            />
-          </View>
           {/* email input */}
           <Text style={styles.inputLabel}>Email</Text>
           <TextInput
@@ -103,11 +86,13 @@ export default function SignUpScreen() {
             keyboardType="email-address"
             placeholder="example@email.com"
             placeholderTextColor="gray"
+            textContentType="emailAddress"
           />
           {/* confirm password input */}
           <Text style={styles.inputLabel}>Password</Text>
           <View>
             <TextInput
+              textContentType="newPassword"
               style={styles.textInput}
               value={confirmPass}
               onChangeText={setConfirmPass}
@@ -142,9 +127,12 @@ export default function SignUpScreen() {
           ) : (
             <Text style={styles.errorMessage}> </Text>
           )}
-          <TermsCheckbox />
+          <TermsCheckbox isChecked={isChecked} setIsChecked={setIsChecked} />
           {/* Sign Up Button */}
-          <TouchableOpacity style={styles.signUpBtn} onPress={signUp}>
+          <TouchableOpacity
+            style={styles.signUpBtn}
+            onPress={() => router.push("/address-info")}
+          >
             <Text style={styles.signUpBtnText}>Sign Up</Text>
           </TouchableOpacity>
         </KeyboardAvoidingView>
@@ -156,10 +144,13 @@ export default function SignUpScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
+    flexDirection: "column",
+
+    justifyContent: "flex-start",
     alignItems: "center",
     backgroundColor: "#fff",
     padding: 16,
+    paddingBottom: "auto",
   },
   header: {
     fontSize: 32,
@@ -180,16 +171,15 @@ const styles = StyleSheet.create({
     marginBottom: 4,
   },
   textInput: {
-    padding: 10,
-    borderColor: "gray",
-    borderWidth: 1,
-    borderRadius: 20,
+    padding: 6,
+    borderBottomColor: "gray",
+    borderBottomWidth: 1,
     marginBottom: 12,
   },
   iconContainer: {
     position: "absolute",
-    right: 20,
-    top: 8, // Adjust based on your TextInput height
+    right: 14,
+    top: 3, // Adjust based on your TextInput height
   },
   forgotPswd: {
     display: "flex",

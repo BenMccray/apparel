@@ -3,24 +3,28 @@ import React, { useState } from "react";
 import Checkbox from "expo-checkbox";
 import { Link } from "expo-router";
 
-export default function TermsCheckbox() {
-  const [isChecked, setChecked] = useState(false);
+type Props = {
+  isChecked: boolean;
+  setIsChecked: any;
+};
+export default function TermsCheckbox({ isChecked, setIsChecked }: Props) {
+  // const [isChecked, setChecked] = useState(false);
 
   return (
     <View style={styles.userAgreement}>
       <Checkbox
         style={styles.checkbox}
         value={isChecked}
-        onValueChange={setChecked}
+        onValueChange={setIsChecked}
         color={isChecked ? "#007BFF" : undefined}
       />
       <Text>
         I have read and agree to the{" "}
-        <Link style={styles.link} href="/">
+        <Link style={styles.link} href="./">
           Terms of Service
         </Link>{" "}
         and{" "}
-        <Link style={styles.link} href="/">
+        <Link style={styles.link} href="./">
           Privacy Policy
         </Link>
         .

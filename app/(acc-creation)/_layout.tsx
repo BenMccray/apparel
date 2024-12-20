@@ -8,7 +8,8 @@ export default function CreationLayout() {
   return (
     <Stack>
       <Stack.Screen name="sign-up" options={{ headerShown: false }} />
-      <Stack.Screen name="add-info" options={{ headerShown: false }} />
+      <Stack.Screen name="address-info" options={{ headerShown: false }} />
+      <Stack.Screen name="profile-info" options={{ headerShown: false }} />
     </Stack>
   );
 }

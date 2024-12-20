@@ -50,11 +50,11 @@ export default function RootLayout() {
 
     const inAuthGroup = segments[0] === "(auth)";
 
-    // if (user) {
-    //   router.replace("/(tabs)/home");
-    // } else {
-    //   router.replace("./index");
-    // }
+    if (user) {
+      router.replace("/(tabs)/home");
+    } else {
+      router.replace("/sign-in");
+    }
   }, [user, initializing]);
 
   if (!loaded) {
@@ -65,7 +65,7 @@ export default function RootLayout() {
     // <GestureHandlerRootView>
     <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
       <Stack>
-        <Stack.Screen name="index" options={{ headerShown: false }} />
+        <Stack.Screen name="sign-in" options={{ headerShown: false }} />
         <Stack.Screen name="(acc-creation)" options={{ headerShown: false }} />
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="(auth)" options={{ headerShown: false }} />
