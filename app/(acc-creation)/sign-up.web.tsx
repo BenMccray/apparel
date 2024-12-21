@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { app, auth, db } from "@/firebaseConfig.web";
+import { auth, db } from "@/firebaseConfig.web";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
 import {
@@ -50,9 +50,9 @@ export default function SignUpScreen() {
             const user = userCredential.user;
             console.log(user.uid);
             return setDoc(doc(db, "users", user.uid), {
-              user_id: user.uid,
-              user_email: email,
-              user_image_url: "",
+              userId: user.uid,
+              userEmail: email,
+              userImageURL: "",
             });
           }
         );

@@ -30,17 +30,17 @@ export default function AddressScreen() {
       await addDoc(
         collection(usersRef, "rtvJJPb65iMUDvJlBynmnKZfQSl1", "saved_addrs"),
         {
-          addr_line_1: addr1,
-          addr_line_2: addr2,
+          addrLine1: addr1,
+          addrLine2: addr2,
           city: city,
           state: state,
-          zip_code: zipcode,
+          zipcode: zipcode,
         }
       );
       if (phone) {
         await setDoc(
           doc(db, "users", userId),
-          { user_phone: phone },
+          { userPhone: phone },
           { merge: true }
         );
       }
@@ -118,6 +118,7 @@ export default function AddressScreen() {
           ]}
           onFocus={() => setFocusedInput("zip")}
           onBlur={() => setFocusedInput("")}
+          onChangeText={setZipcode}
         />
 
         <Text style={styles.inputLabel}>Telephone</Text>

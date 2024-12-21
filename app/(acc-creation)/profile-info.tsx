@@ -10,6 +10,8 @@ import {
 import { Camera } from "expo-camera";
 import { Link, useRouter } from "expo-router";
 import RNPickerSelect from "react-native-picker-select";
+import { auth } from "@/firebaseConfig.web";
+import { updateProfile } from "firebase/auth";
 // import DropDownPicker from "react-native-dropdown-picker";
 
 export default function InfoScreen() {
@@ -31,7 +33,7 @@ export default function InfoScreen() {
         more generic and less reflective of how the clothes would truly fit and
         look on you.
       </Text>
-      <Text style={styles.inputLabel}>User Name</Text>
+      <Text style={styles.inputLabel}>Display Name</Text>
       <TextInput
         style={styles.input}
         value={name}
